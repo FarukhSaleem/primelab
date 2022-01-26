@@ -1,68 +1,74 @@
-import React from "react";
-import Link from "next/link";
-import Box from "@mui/material/Box";
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import CssBaseline from "@mui/material/CssBaseline";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import { Item } from "./Login.style";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import useStyles from "./Login.style";
 import Button from "../../components/core/Button/Button";
+import TextField from "../../components/core/TextField/TextField";
 
-export function Login() {
-  const [email, setEmail] = React.useState<string>("");
-  const [phone, setPhone] = React.useState<string>("");
-  const [isActiveEmail, setIsActiveEmail] = React.useState<boolean>(true);
-  const [isActivePhone, setIsActivePhone] = React.useState<boolean>(false);
-  const [disabled, setDisabled] = React.useState<boolean>(true);
-  const [placeholer, setPlaceHolder] =
-    React.useState<string>("johndoe@gmail.com");
-  const handleChange = (e: any) => {
-    if (isActiveEmail === true) {
-      setEmail(e.target.value);
-    } else if (isActivePhone === true) {
-      setPhone(e.target.value);
-    }
-    if (!e.target.value) {
-      setDisabled(true);
-      return;
-    }
-    setDisabled(false);
+export function LogIn() {
+  const classes = useStyles();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({  email: data.get("email"),  password: data.get("password"), });
   };
-  const handleButtonClick = (name: string) => {
-    switch (name) {
-      case "email":
-        setIsActivePhone(false);
-        setIsActiveEmail(true);
-        setPlaceHolder("johndoe@gmail.com");
-        setPhone("");
-        setDisabled(true);
-        break;
-      case "phone":
-        setIsActivePhone(true);
-        setIsActiveEmail(false);
-        setEmail("");
-        setPlaceHolder("Ex (337) 378 8383");
-        setDisabled(true);
-        break;
-      default:
-        break;
-    }
-  };
-  const handleContinue = () => {};
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={8}>
-          <Item>xs=6 md=8</Item>
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid item xs={6} md={8}>
-          <Item>xs=6 md=8</Item>
-        </Grid>
-      </Grid>
-    </Box>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box className={classes.box}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Log in
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button label="Log In" type="submit" fullWidth variant="contained" />
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   );
 }
