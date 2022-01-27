@@ -1,4 +1,5 @@
-export default describe('Sign up Page', () => {
+
+describe('Sign up Page', () => {
     it('Fetcing Signup Page', () => {
       cy.visit('http://localhost:3000/login');
     });

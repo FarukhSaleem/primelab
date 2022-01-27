@@ -8,7 +8,12 @@ const { usersSuccess, startLoading, hasError } = slice.actions;
 export const fetchUser = (data: UserType) => async (dispatch: AppDispatch) => {
   dispatch(startLoading());
   try {
-    const response = await fetchUserLogin(data);
+    const response = await fetchUserLogin({
+      email: data.email,
+      password: data.password,
+      user_name: data.user_name || '',
+      phone: data.phone
+    });
     dispatch(usersSuccess(response.data));
   } catch (err: any) {
     dispatch(hasError(err?.message));

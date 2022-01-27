@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
 import axiosInstance from "../axiosInstance";
-import { requestLogin } from "./loginServiceFunction.types";
+import { RequestLogin } from "./loginServiceFunction.types";
 export const fetchUserLogin = (
-  body: requestLogin
+  body: RequestLogin
 ): Promise<AxiosResponse<any, any>> => {
   return axiosInstance.post("/login", body);
 };
