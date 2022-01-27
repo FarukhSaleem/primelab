@@ -5,7 +5,7 @@ export interface UserType {
   password: string;
   phone?: string;
   token?: string;
-  user_name: string;
+  user_name?: string;
 }
 export interface InitialStateType {
   user: UserType;

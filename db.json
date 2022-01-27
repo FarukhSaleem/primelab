@@ -40,6 +40,22 @@
       "user_name": "farukh",
       "password": "123",
       "id": 7
+    },
+    {
+      "email": "fsaldev1@gmail.com",
+      "user_name": "farukh",
+      "password": "123",
+      "id": 8
+    },
+    {
+      "email": "king@gmail.com",
+      "password": "12356",
+      "id": 9
+    },
+    {
+      "email": "inia@gmail.com",
+      "password": "123456",
+      "id": 10
     }
   ]
 }

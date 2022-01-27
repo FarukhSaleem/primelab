@@ -15,21 +15,23 @@ import Button from "../../components/core/Button/Button";
 import TextField from "../../components/core/TextField/TextField";
 import { fetchUser } from "../../store/user/user.actions";
 import { getUserSelector } from "../../store/user/user.selector";
-
+import { Field, Form, Formik, FormikHelpers, FormikValues , ErrorMessage } from "formik";
+import { FormSchema } from "./Login.types";
+import { validationSchema } from './Login.validation'
+import { UserType } from "../../store/user/user.types";
 export function LogIn() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = useSelector(getUserSelector);
-  console.log("user", user);
+  const initialValue: FormSchema = {
+    email: "",
+    password: "",
+  };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = {
-      email: "fsaldev1@gmail.com",
-      user_name: "farukh",
-      password: "123",
-    };
-    dispatch(fetchUser(data));
+  const handleSubmit = (values: UserType, helpers: FormikHelpers<FormikValues>) => {
+  
+    helpers.resetForm()
+     dispatch(fetchUser(values));
   };
 
   return (
@@ -42,42 +44,58 @@ export function LogIn() {
         <Typography component="h1" variant="h5">
           Log in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button label="Log In" type="submit" fullWidth variant="contained" />
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+        <Formik initialValues={initialValue} onSubmit={handleSubmit} validationSchema={validationSchema}>
+          <Form data-testid="login-form">
+            <Field
+              as={TextField}
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              data-testid="email"
+              helperText={<ErrorMessage  name="email"/>}
+            />
+            <Field
+              as={TextField}
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              data-testid="password"
+              helperText={<ErrorMessage name="password"/>}
+
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+              data-testid="remember"
+            />
+            <Button
+              label="Log In"
+              type="submit"
+              fullWidth
+              variant="contained"
+              data-testid="submitbutton"
+            />
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
+          </Form>
+        </Formik>
       </Box>
     </Container>
   );
