@@ -5,14 +5,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "json-server": "npx json-server --watch db.json --port 7000",
     "test": "jest",
     "test: watch": "jest --watch",
     "prepare": "husky install",
-    "lint": "eslint --ext js,jsx,ts,tsx cypress src --cache --report-unused-disable-directives --max-warnings=0",
+    "lint": "next lint",
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
@@ -27,10 +26,8 @@
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",
     "axios": "^0.25.0",
-    "babel-jest": "^27.4.6",
     "cypress": "^9.3.1",
     "formik": "^2.2.9",
-    "husky": "^7.0.4",
     "json-server": "^0.17.0",
     "next": "12.0.8",
     "prettier": "^2.5.1",
@@ -58,6 +55,8 @@
     "jest": "^27.4.7",
     "ts-jest": "^27.1.3",
     "typescript": "4.5.5",
-    "webpack": "^5.67.0"
+    "babel-jest": "^27.4.6",
+    "webpack": "^5.67.0",
+    "husky": "^7.0.4"
   }
 }

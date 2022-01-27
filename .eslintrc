@@ -1,6 +1,7 @@
 {
   "extends":[
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "next"
   ],
   "env": {
     "jest": true
