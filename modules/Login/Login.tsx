@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -12,14 +13,23 @@ import Container from "@mui/material/Container";
 import useStyles from "./Login.style";
 import Button from "../../components/core/Button/Button";
 import TextField from "../../components/core/TextField/TextField";
+import { fetchUser } from "../../store/user/user.actions";
+import { getUserSelector } from "../../store/user/user.selector";
 
 export function LogIn() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const user = useSelector(getUserSelector);
+  console.log("user", user);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log( "saxax", data.get("email"),   data.get("password") );
+    const data = {
+      email: "fsaldev1@gmail.com",
+      user_name: "farukh",
+      password: "123",
+    };
+    dispatch(fetchUser(data));
   };
 
   return (

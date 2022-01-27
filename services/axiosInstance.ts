@@ -1,14 +1,14 @@
-export {}
 import axios from 'axios';
-import { store } from '../store/index';
+import { API_BASE_URL } from '../constants/app.constants';
+import store from '../store/index';
 
 const axiosInstance = axios.create({
-    baseURL: `https://react-course-b798e-default-rtdb.firebaseio.com/`,
+    baseURL: API_BASE_URL,
 });
 
 axiosInstance.interceptors.request.use((config: any) => {
     const state = store.getState();
-    const token = state.auth.auth.token;
+    const token = state.user.user.token;
     config.params = config.params || {};
     config.params['auth'] = token;
 
