@@ -15,11 +15,22 @@ import Button from "../../components/core/Button/Button";
 import TextField from "../../components/core/TextField/TextField";
 import { fetchUser } from "../../store/user/user.actions";
 import { getUserSelector } from "../../store/user/user.selector";
-import { Field, Form, Formik, FormikHelpers, FormikValues , ErrorMessage } from "formik";
+import {
+  Field,
+  Form,
+  Formik,
+  FormikHelpers,
+  FormikValues,
+  ErrorMessage,
+  FormikFormProps,
+  FormikProps
+} from "formik";
 import { FormSchema } from "./Login.types";
-import { validationSchema } from './Login.validation'
+import { validationSchema } from "./Login.validation";
 import { UserType } from "../../store/user/user.types";
+
 export function LogIn() {
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = useSelector(getUserSelector);
@@ -28,10 +39,13 @@ export function LogIn() {
     password: "",
   };
 
-  const handleSubmit = (values: UserType, helpers: FormikHelpers<FormikValues>) => {
-  
-    helpers.resetForm()
-     dispatch(fetchUser(values));
+  const handleSubmit = (
+    values: UserType,
+    props: any
+  ) => {
+    console.log("propssssss", props)
+    dispatch(fetchUser(values));
+    props.resetForm();
   };
 
   return (
@@ -44,7 +58,12 @@ export function LogIn() {
         <Typography component="h1" variant="h5">
           Log in
         </Typography>
-        <Formik initialValues={initialValue} onSubmit={handleSubmit} validationSchema={validationSchema}>
+        <Formik
+          initialValues={initialValue}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {({errors, touched})=> (
           <Form data-testid="login-form">
             <Field
               as={TextField}
@@ -54,7 +73,8 @@ export function LogIn() {
               autoComplete="email"
               autoFocus
               data-testid="email"
-              helperText={<ErrorMessage  name="email"/>}
+              helperText={<ErrorMessage name="email" />}
+              error={errors.email && touched.email ? errors.email : ""}
             />
             <Field
               as={TextField}
@@ -67,7 +87,8 @@ export function LogIn() {
               id="password"
               autoComplete="current-password"
               data-testid="password"
-              helperText={<ErrorMessage name="password"/>}
+              helperText={<ErrorMessage name="password" />}
+              error={errors.password && touched.password ? errors.password : ""}
 
             />
             <FormControlLabel
@@ -95,6 +116,7 @@ export function LogIn() {
               </Grid>
             </Grid>
           </Form>
+          )}
         </Formik>
       </Box>
     </Container>

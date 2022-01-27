@@ -6,7 +6,7 @@ import useStyles from "./Button.style";
 const Button = ({ label, ...restProps }: Props): JSX.Element => {
   const classes = useStyles();
   return (
-    <MaterialButton className={classes.button} {...restProps}>
+    <MaterialButton className={classes.button} {...restProps} data-testid="submit-button-custom" >
       {label}
     </MaterialButton>
   );

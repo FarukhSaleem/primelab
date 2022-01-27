@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextField /> It should render input field 1`] = `
+<input
+  aria-invalid="false"
+  class="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+  id="mui-1"
+  required=""
+  type="text"
+  value=""
+/>
+`;

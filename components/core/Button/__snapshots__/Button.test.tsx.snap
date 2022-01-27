@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> It should render submit button 1`] = `
+<button
+  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root MyTestButton css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+  data-testid="submit-button-custom"
+  tabindex="0"
+  type="button"
+>
+  Submit Button
+  <span
+    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+  />
+</button>
+`;
