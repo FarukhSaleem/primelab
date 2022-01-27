@@ -23,7 +23,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "jest.config.js",
     "cypress/integration/login.spec.js"
   ],
   "exclude": [
