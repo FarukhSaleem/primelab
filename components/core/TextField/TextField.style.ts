@@ -10,4 +10,3 @@ export const useStyles = makeStyles((theme: any) => ({
     marginBottom: 20, 
   },
 }))
-export default useStyles;
