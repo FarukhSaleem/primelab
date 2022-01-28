@@ -72,9 +72,10 @@ export function LogIn() {
               name="email"
               autoComplete="email"
               autoFocus
-              data-testid="email"
               helperText={<ErrorMessage name="email" />}
-              error={errors.email && touched.email ? errors.email : ""}
+              error={errors.email && touched.email ? true : false}
+              data-testid="email"
+              data-cy="login-input-email"
             />
             <Field
               as={TextField}
@@ -86,10 +87,10 @@ export function LogIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              data-testid="password"
               helperText={<ErrorMessage name="password" />}
-              error={errors.password && touched.password ? errors.password : ""}
-
+              error={errors.password && touched.password ? true : false}
+              data-testid="password"
+              data-cy="login-input-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -102,6 +103,7 @@ export function LogIn() {
               fullWidth
               variant="contained"
               data-testid="submitbutton"
+              data-cy="login-submit"
             />
             <Grid container>
               <Grid item xs>
